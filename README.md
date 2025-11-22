@@ -29,7 +29,36 @@ Proyecto base para una plataforma de venta de boletos en línea con frontend en 
 - Validación de roles para operaciones administrativas (gestión de eventos, precios y disponibilidad).
 - Validaciones de negocio para prevenir doble asignación de boletos, pagos repetidos y accesos no autorizados.
 
+## Backend: estructura inicial
+
+Se añadió un esqueleto Express en TypeScript para comenzar a implementar la lógica de negocio:
+
+- **Rutas**: `/api/events` para consultar eventos, `/api/auth` para registro y login con JWT, `/api/health` para verificar conexión a la base de datos.
+- **Capas**: controladores ligeros en `routes.ts`, servicios con validaciones y reglas de negocio (`service.ts`), y repositorios PostgreSQL (`repository.ts`).
+- **Infraestructura**: configuración de entorno (`src/config/env.ts`), pool de PostgreSQL (`src/config/db.ts`), manejo de errores (`src/middleware/error-handler.ts`) y utilidades comunes.
+
+### Configuración y ejecución local
+
+1. Crea un archivo `.env` a partir de `.env.example` con los valores reales de PostgreSQL y el secreto JWT.
+2. Instala dependencias y compila:
+
+   ```bash
+   npm install
+   npm run build
+   ```
+
+3. Levanta el servidor en modo desarrollo con recarga:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Endpoints disponibles de referencia:
+   - `GET /api/health`: verifica la conexión a PostgreSQL.
+   - `GET /api/events` y `GET /api/events/:id`: lista y detalle de eventos.
+   - `POST /api/auth/register` y `POST /api/auth/login`: registro/login con validación de email y contraseñas de mínimo 8 caracteres.
+
 ## Próximos pasos sugeridos
-- Configurar monorepo o repos separados para `frontend/` y `backend/`.
-- Definir esquema de base de datos en PostgreSQL (eventos, boletos, órdenes, pagos, usuarios, roles).
-- Implementar pipeline de CI con pruebas unitarias y end-to-end básicas.
+- Completar el esquema de base de datos (eventos, boletos, órdenes, pagos, usuarios, roles) y agregar migraciones/seeds.
+- Añadir middleware de autenticación para proteger órdenes y compras, junto con pruebas unitarias de servicios y repositorios.
+- Configurar pipeline de CI con pruebas y análisis estático, y definir contrato de la API para el frontend (OpenAPI/Swagger).
