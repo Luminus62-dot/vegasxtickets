@@ -31,7 +31,7 @@ Proyecto base para una plataforma de venta de boletos en línea con frontend en 
 
 ## Backend: estructura inicial
 
-Se añadió un esqueleto Express en TypeScript para comenzar a implementar la lógica de negocio:
+El backend en Express con TypeScript se encuentra dentro de la carpeta `backend/` para mantener separadas las piezas de la plataforma.
 
 - **Rutas**: `/api/events` para consultar eventos, `/api/auth` para registro y login con JWT, `/api/health` para verificar conexión a la base de datos.
 - **Capas**: controladores ligeros en `routes.ts`, servicios con validaciones y reglas de negocio (`service.ts`), y repositorios PostgreSQL (`repository.ts`).
@@ -39,21 +39,27 @@ Se añadió un esqueleto Express en TypeScript para comenzar a implementar la l�
 
 ### Configuración y ejecución local
 
-1. Crea un archivo `.env` a partir de `.env.example` con los valores reales de PostgreSQL y el secreto JWT.
-2. Instala dependencias y compila:
+1. Ve a la carpeta del backend:
+
+   ```bash
+   cd backend
+   ```
+
+2. Crea un archivo `.env` a partir de `.env.example` con los valores reales de PostgreSQL y el secreto JWT.
+3. Instala dependencias y compila:
 
    ```bash
    npm install
    npm run build
    ```
 
-3. Levanta el servidor en modo desarrollo con recarga:
+4. Levanta el servidor en modo desarrollo con recarga:
 
    ```bash
    npm run dev
    ```
 
-4. Endpoints disponibles de referencia:
+5. Endpoints disponibles de referencia:
    - `GET /api/health`: verifica la conexión a PostgreSQL.
    - `GET /api/events` y `GET /api/events/:id`: lista y detalle de eventos.
    - `POST /api/auth/register` y `POST /api/auth/login`: registro/login con validación de email y contraseñas de mínimo 8 caracteres.

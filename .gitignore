@@ -4,7 +4,5 @@ node_modules
 /backend/.env
 /dist
 /backend/dist
-.env
-/dist
 npm-debug.log*
 .DS_Store
